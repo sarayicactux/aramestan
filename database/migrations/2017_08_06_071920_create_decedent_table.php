@@ -49,8 +49,8 @@ class CreateDecedentTable extends Migration
 			$table->string('hregdate');
 			$table->string('priest')->default('');
 			$table->string('fridge_num');
-			$table->text('addr')->default('');
-			$table->text('discription')->default('');
+			$table->text('addr');
+			$table->text('discription');
 			$table->integer('driver')->default(0);
 			$table->string('add_txt');
 			$table->integer('del_ed')->default(0);

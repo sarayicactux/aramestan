@@ -43,7 +43,7 @@ return [
             'driver' => 'mysql',
             'host' => 'localhost',
             'port' => '3306',
-            'database' => 'aramestan',
+            'database' => 'aramestan2',
             'username' => 'root',
             'password' => '',
             'unix_socket' => env('DB_SOCKET', ''),
