@@ -140,7 +140,8 @@ function postMenus(url){
 	$('html, body').animate({ scrollTop: 0 }, 1000);
 	$('#bg').fadeIn(100);
 	$('#wait').fadeIn(100);
-	$.post("index.php/"+url, { 
+	$.post(url, { 
+		   _token           : $('#_token').val(),
 			   },
 		 function(data){ 
 		

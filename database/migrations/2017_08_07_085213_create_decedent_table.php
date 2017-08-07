@@ -55,7 +55,6 @@ class CreateDecedentTable extends Migration
 			$table->string('add_txt');
 			$table->integer('del_ed')->default(0);
 			$table->integer('act_stat')->default(21);
-			
             $table->timestamps();
         });
     }

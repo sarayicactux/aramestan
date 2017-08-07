@@ -1,12 +1,67 @@
 <?php
 
-namespace App;
+namespace App\Http\Controllers;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
-class Jdate extends Model
+class Jdate extends Controller
 {
-    
+    //
+	public static  function fn($m)
+{
+	$p = "";
+	$startpos = 0;
+	$endpos = -1;
+	
+	while (true)
+	{
+		if ($endpos == -1)
+			$startpos = strpos($m, "<");
+		else
+			$startpos = strpos($m, "<", $endpos);
+		if ($startpos === false)
+		{
+			$startpos = strlen($m);
+			$p .= self::str2fn(substr($m, $endpos + 1, $startpos - $endpos - 1));
+			break;
+		}
+		$p .= self::str2fn(substr($m, $endpos+1, $startpos - $endpos -1));
+		$endpos = strpos($m, ">", $startpos);
+		$p .= substr($m, $startpos , $endpos - $startpos + 1);
+	}
+	return $p;
+}
+
+public static  function str2fn($m)
+{
+	$m=str_replace("1","۱",$m);
+	$m=str_replace("2","۲",$m);
+	$m=str_replace("3","۳",$m);
+	$m=str_replace("4","۴",$m);
+	$m=str_replace("5","۵",$m);
+	$m=str_replace("6","۶",$m);
+	$m=str_replace("7","۷",$m);
+	$m=str_replace("8","۸",$m);
+	$m=str_replace("9","۹",$m);
+	$m=str_replace("0","۰",$m);
+	return $m;
+}
+	
+public static  function reverseFN($m)
+{
+	$m=str_replace("۱","1",$m);
+	$m=str_replace("۲","2",$m);
+	$m=str_replace("۳","3",$m);
+	$m=str_replace("۴","4",$m);
+	$m=str_replace("۵","5",$m);
+	$m=str_replace("۶","6",$m);
+	$m=str_replace("۷","7",$m);
+	$m=str_replace("۸","8",$m);
+	$m=str_replace("۹","9",$m);
+	$m=str_replace("۰","0",$m);
+	return $m;
+
+}
  
  public static  function medate(){
   function div11($a,$b) {

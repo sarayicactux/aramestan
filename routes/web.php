@@ -19,3 +19,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'startController@index');
 Route::post('/Adlogin', 'startController@login');
+Route::post('/decedent','decedentController@addDead');
