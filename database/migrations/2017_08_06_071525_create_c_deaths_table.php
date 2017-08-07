@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCDeathTable extends Migration
+class CreateCDeathsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCDeathTable extends Migration
      */
     public function up()
     {
-        Schema::create('c_death', function (Blueprint $table) {
+        Schema::create('c_deaths', function (Blueprint $table) {
             $table->increments('id');
 			$table->string('c_death');
 			$table->integer('c_code');
@@ -31,6 +31,6 @@ class CreateCDeathTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('c_death');
+        Schema::dropIfExists('c_deaths');
     }
 }

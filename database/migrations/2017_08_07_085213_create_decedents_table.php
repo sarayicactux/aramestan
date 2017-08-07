@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDecedentTable extends Migration
+class CreateDecedentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateDecedentTable extends Migration
      */
     public function up()
     {
-        Schema::create('decedent', function (Blueprint $table) {
+        Schema::create('decedents', function (Blueprint $table) {
             $table->increments('id');
 			$table->integer('gender');
 			$table->string('name');
@@ -44,6 +44,7 @@ class CreateDecedentTable extends Migration
 			$table->integer('age_type');
 			$table->integer('is_sh')->default(0);
 			$table->integer('burial')->default(0);
+			$table->string('burial_p');
 			$table->integer('user_id');
 			$table->integer('regdate');
 			$table->string('hregdate');
@@ -66,6 +67,6 @@ class CreateDecedentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('decedent');
+        Schema::dropIfExists('decedents');
     }
 }

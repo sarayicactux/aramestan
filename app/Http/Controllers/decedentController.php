@@ -33,4 +33,42 @@ class decedentController extends Controller
 		 return view('decedent.addDead', compact('regNum', 'drivers', 'c_death' ));
 		  
 	}
+	
+	public function cregNum(){
+			$date = Jdate::medate();
+			$staD = $date['ymd']['y'].'01'.'01';
+		 	$endD = $date['ymd']['y'].'12'.'30';
+			$regNum = $_POST['regNum'];
+			$inf = decedent::select('reg_num')
+                     ->where('reg_num', '=', $regNum)
+					 ->where('int_date', '<=', $endD)
+					 ->where('int_date', '>=', $staD)
+                    
+                     ->get();
+			
+			if ( count($inf) == 0 ){
+					$msg =  '';
+					$status = true;
+			}
+			else {
+					$msg = 'شماره ثبت دفتری وارد شده تکراری است';
+					$status = false;
+			}
+			echo json_encode(	array('status'=>$status,'msg'=>$msg)); 	
+	}
+	public function decsave()	{
+		
+		decedent::decsave($_POST);	
+		
+	}
+	public function decList() 	{
+			$num = decedent::where('id', '>=', 1)->count();
+			$decedent = decedent::select('*')
+                     ->limit(150)
+					 ->orderBy('id', 'DESC')
+                     ->get();
+					
+			 return view('decedent.decList', compact('decedent','num'));
+		
+	}
 }

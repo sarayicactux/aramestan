@@ -791,6 +791,47 @@ function jalali_to_gregorian($j_y,$j_m,$j_d,$mod=''){
  return($mod=='')?array($gy,$gm,$gd):$gy.$mod.$gm.$mod.$gd;
 }
 
-
+public static  function regDate(){
+			$date = self::medate(); 
+			
+			$mont = $date['ymd']['m'];
+			if ( $date['ymd']['m'] < 10 ){
+			  	$mont = '0'.$mont;
+			}
+			$days = $date['ymd']['d'];
+			if ( $date['ymd']['d'] < 10 ){
+			  	$days = '0'.$days;
+			}
+			$regdate = $date['ymd']['y'].$mont.$days;
+			$hregdate= $date['date4'];
+			return array('1'=>$regdate,'2'=>$hregdate,'3'=>$date,'4'=>$date['ymd']['y']);
+}
+public static  function echo_date($intDate){
+	if ( strlen($intDate) == 8 ){
+  	$year  = substr($intDate,0,4);
+	$month = substr($intDate,4,2);
+	$day   = substr($intDate,6,2);
+	return self::fn($year.'/'.$month.'/'.$day);
+	}
+	else if ( strlen($intDate) == 6 ){
+  	$year  = substr($intDate,0,4);
+	$month = substr($intDate,4,1);
+	$day   = substr($intDate,5,1);
+	return self::fn($year.'/0'.$month.'/0'.$day);
+	}
+	else if ( strlen($intDate) == 7 ){
+  	$year  = substr($intDate,0,4);
+	$month = substr($intDate,4,1);
+	$day   = substr($intDate,5,2);
+	
+	return ($year.'/0'.$month.'/'.$day);
+	}
+}
+public static  function echo_date2($intDate){
+  	$year  = substr($intDate,0,4);
+	$month = substr($intDate,4,2);
+	$day   = substr($intDate,6,2);
+	return ($year.'/'.$month.'/'.$day);
+}
 
 }
