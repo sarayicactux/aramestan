@@ -23,3 +23,6 @@ Route::post('/decedent','decedentController@addDead');
 Route::post('/decedent/cregNum','decedentController@cregNum');
 Route::post('/decedent/decsave','decedentController@decsave');
 Route::post('/decedent/decList','decedentController@decList');
+Route::post('/decedent/searchDec','decedentController@searchDec');
+Route::post('/decedent/attachs','decedentController@attachs');
+Route::post('/decedent/sendDeadDoc','decedentController@sendDeadDoc');

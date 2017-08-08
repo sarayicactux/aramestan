@@ -107,9 +107,6 @@
 <div align="left" style="padding-left:10px"><button onclick="searchDec();" class="btn btn-primary">جستجو</button></div>
 <br />
 	<span id="searchResult">
-<?php
-
-?>
 <div class="portlet box blue">
   <div class="portlet-title"> 
 	   <div class="caption">

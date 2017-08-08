@@ -67,6 +67,41 @@ function checkMelliCode(meli_code) {
 		 
         return false;
     }}
+function ajaxFileUpload(source , file_el_id ,msg_id , check_id ){
+		
+		
+		
+				var file_data = $('#'+file_el_id).prop('files')[0];   
+				var form_data = new FormData();                  
+				form_data.append('file', file_data);
+				$.ajax({
+							url: source, // point to server-side PHP script 
+							dataType: 'text',  // what to expect back from the PHP script, if anything
+							cache: false,
+							contentType: false,
+							processData: false,
+							data: form_data,                         
+							type: 'post',
+							success: function(data){
+								data = JSON.parse(data);
+										if(data.err != '1')
+										{
+											document.getElementById(msg_id).innerHTML = data.err ;
+											$('#'+check_id).val('1');
+											$('#fileName').val(data.fileName);
+										}else
+										{
+											
+											document.getElementById(msg_id).innerHTML = 'حجم فایل بیشتر از حد مجاز است' ;
+											$('#'+check_id).val('0');
+											
+										}
+									
+				
+							}
+				 });
+	
+	}
 function postMenus(url){
 	$('html, body').animate({ scrollTop: 0 }, 1000);
 	$('#bg').fadeIn(100);
@@ -161,6 +196,7 @@ function ctrlAct(id,ctrlAct){
 			$('#LayerDiv').html('');
 			$.post("index.php/"+ctrlAct, { 
 				   tId     : id,
+				   _token  : $('#_token').val(),
 			   },
 					 function(data){ 
 					
@@ -345,13 +381,14 @@ function regDead() {
 function searchDec(){
   			$('#bg').fadeIn(100);
 			$('#wait').fadeIn(100);
-			$.post("index.php/decedent/searchDec", { 
+			$.post("decedent/searchDec", { 
 					  		gender   :  $('#gender').val(),
 							wcolumn  :  $('#wcolumn').val(),
 							orderBy  :  $('#orderBy').val(),
 							verb     :  $('#verb').val(),
 							decStart :  $('#decStart').val(),
 							decEnd   :  $('#decEnd').val(),
+							_token       : $('#_token').val(),
 					   },
 				 function(data){
 					 $('#searchResult').html(data);
@@ -370,9 +407,11 @@ function sendDeadDoc(att_id,id){
 			}
 			else {
 			$('#wait').fadeIn(100);	
-			$.post("index.php/decedent/sendDeadDoc", { 
-				   att_id : att_id,
-				   id     : id,
+			$.post("decedent/sendDeadDoc", { 
+				   att_id    : att_id,
+				   id        : id,
+				   fileName  : $('#fileName').val(),
+				   _token    : $('#_token').val(),
 			   },
 					 function(data){ 
 					
