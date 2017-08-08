@@ -529,7 +529,7 @@ function editDead() {
 			else {
 				 
 			$('#wait').fadeIn(100);
-		      $.post("index.php/decedent/decEdit", { 
+		      $.post("decedent/decEdit", { 
 					gender       : $('#gender_edit').val(),
 					name         : $('#name').val(),
 			  		family       : $('#family').val(),
@@ -563,6 +563,7 @@ function editDead() {
 					reg_num      : $('#reg_num').val(),
 					discription  : $('#discription').val(),
 					id           : $('#deadIdEd').val(),
+					_token       : $('#_token').val(),
 					
 									
 					
@@ -571,12 +572,16 @@ function editDead() {
 		 
 			
 			$('#err_msg').html('اطلاعات متوفی با موفقیت به روز رسانی شد');
+			
 					$('#bg').fadeIn(100,function(){
 												$('#alerts').fadeIn(200); 
 												 });
 						 
 		 
 			  $('#wait').fadeOut(100);
+			   $("body").removeClass("modal-open");
+			 $('.modal-backdrop').fadeOut(100);
+			  postMenus('decedent/decList');
 		
 		
 		 });
@@ -590,8 +595,9 @@ function deleteDec(id){
 		
 				 
 			$('#wait').fadeIn(100);
-		      $.post("index.php/decedent/deleteDec", { 
-					id    : id,
+		      $.post("decedent/deleteDec", { 
+					id      : id,
+					_token  : $('#_token').val(),
 			   },
 		 function(data){
 			 postMenus('decedent/decList');

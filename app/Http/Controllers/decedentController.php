@@ -128,4 +128,62 @@ class decedentController extends Controller
 								
 			
 	}
+	public function deleteAttach(){
+			
+			$deaddoc  = attachments::find($_POST['tId']);
+			$filename = $deaddoc->f_url;
+			$d_id     = $deaddoc->d_id;
+			$deaddoc->delete();
+			
+		
+			unlink ('file/'.$filename);
+			
+			$inf = decedent::find($d_id);
+			$attachs = attachs::where('status', '=', 1)->get();
+			
+			$deaddoc = attachments::where('d_id', '=', $d_id)->get();
+			
+			return view('decedent.deadDoc', compact('inf', 'attachs', 'deaddoc' ));
+			
+	}
+	public function edit(){ 
+		
+		$inf     =  decedent::find($_POST['tId']);
+		$drivers =	drivers::where('status', '=', 1)->get();
+		$c_death = c_death::all(); 
+		return view('decedent.editDec', compact('inf', 'drivers', 'c_death' ));
+		
+	 
+	}
+	public function decEdit()	{
+		echo json_encode(	decedent::EditDec($_POST));	
+		
+	}
+	public function delete(){
+
+			 	$inf     =  decedent::find($_POST['tId']);
+				return view('decedent.decDel', compact('inf'));
+			
+	}
+	public function deleteDec(){
+			//$this->actionTombDelete();
+			$inf     =  decedent::find($_POST['id']);
+			$date = Jdate::medate();
+			$inf->delete();
+			
+			$attachments = attachments::where('d_id', '=', $_POST['id'])->get();
+			
+			
+			for ( $i=0;$i<count($attachments);$i++ ){
+					
+					$deaddoc  = attachments::find($attachments[$i]['id']);
+					$filename = $deaddoc->f_url;
+					$deaddoc->delete();
+				
+					unlink ('file/'.$filename);
+					
+			}
+			
+
+	}
 }

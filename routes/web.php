@@ -26,3 +26,8 @@ Route::post('/decedent/decList','decedentController@decList');
 Route::post('/decedent/searchDec','decedentController@searchDec');
 Route::post('/decedent/attachs','decedentController@attachs');
 Route::post('/decedent/sendDeadDoc','decedentController@sendDeadDoc');
+Route::post('/decedent/deleteAttach','decedentController@deleteAttach');
+Route::post('/decedent/edit','decedentController@edit');
+Route::post('/decedent/decEdit','decedentController@decEdit');
+Route::post('/decedent/delete','decedentController@delete');
+Route::post('/decedent/deleteDec','decedentController@deleteDec');
