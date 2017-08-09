@@ -70,7 +70,11 @@ class decedentController extends Controller
                      ->limit(150)
 					 ->orderBy('id', 'DESC')
                      ->get();
-					
+			/*$renderer = new \BaconQrCode\Renderer\Image\Png();
+$renderer->setHeight(256);
+$renderer->setWidth(256);
+$writer = new \BaconQrCode\Writer($renderer);
+$writer->writeFile('http://bama.ir', 'qrcode.png');	*/
 			 return view('decedent.decList', compact('decedent','num'));
 		
 	}

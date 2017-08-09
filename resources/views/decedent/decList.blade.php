@@ -1,4 +1,10 @@
-<?php $fn = new App\Http\Controllers\Jdate ?>
+<?php $fn = new App\Http\Controllers\Jdate;
+$renderer = new \BaconQrCode\Renderer\Image\Png();
+$writer = new \BaconQrCode\Writer($renderer);
+$renderer->setHeight(256);
+$renderer->setWidth(256);
+ ?>
+
 <div class="container">
     <div class="panel panel-primary">
 	  <div class="panel-heading">لیست متوفیان - تعداد کل ثبت شده ها: {{ $fn->fn($num) }} مورد<button onclick="postMenus('decedent');" type="button" data-toggle="modal" data-target="#newFLayer" class="btn btn-sm btn-success pull-left"><span class="glyphicon glyphicon-plus"></span>ثبت متوفی جدید</button></div>
@@ -182,9 +188,11 @@
 </tr>
 @endfor
 </table>
-</div>
-</div>
+{{ $writer->writeFile('this is Qrcode', 'qrcode.png') }}
 
+</div>
+</div>
+<img src="{{ asset('qrcode.png')}}" height="256" width="256" />
 </span>
 </div></div></div>
 
