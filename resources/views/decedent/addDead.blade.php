@@ -430,5 +430,5 @@ else {
 
 
 </div>
-
+<p> {{ captcha_img() }} </p>;
 <input  class="form-control input-sm"  name="disease"  id="disease" type="hidden" />

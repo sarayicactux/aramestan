@@ -17,7 +17,8 @@ class CreateCDeathsTable extends Migration
             $table->increments('id');
 			$table->string('c_death');
 			$table->integer('c_code');
-			$table->integer('user_id');
+			$table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
 			$table->integer('regdate');
 			$table->string('hregdate');
             $table->timestamps();

@@ -20,7 +20,8 @@ class CreateDriversTable extends Migration
 			$table->string('n_code');
 			$table->string('tel');
 			$table->integer('status')->default(1);
-			$table->integer('user_id');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
 			$table->integer('regdate');
 			$table->string('hregdate');
             $table->timestamps();

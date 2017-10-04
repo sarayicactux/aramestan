@@ -1,6 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="fa" dir="rtl">
 <head>
+    <?php
+    use Illuminate\Support\ServiceProvider;
+    use Mews\Captcha;
+
+    ?>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
 	<meta name="csrf-token" content="<?php echo csrf_token() ?>"/>
@@ -112,7 +117,7 @@
     </nav>
 	    
 	<div class="container"  id="AdminDiv">
-	
+        {{ captcha_src() }}
 	</div>
     
 </div>

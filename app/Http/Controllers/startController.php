@@ -17,6 +17,7 @@ class startController extends Controller
 			return view('layouts.admins',array('date'=>Jdate::fn($date['date4'])));
 		}
 		else {
+				
 		  		return view('layouts.gust');
 				
 		}
@@ -30,6 +31,8 @@ class startController extends Controller
 			$msg = 'نام کاربری و رمز عبور صحیح نیست<br /> یا کاربری شما غیر فعال شده';
 		    $username = $_POST['username'];
 			$password = $_POST['password'];
+			
+		
 					$rows = users::where('username', '=', $username)->where('is_active', '=', 1)->limit('1')->get();
 					if ( count($rows) != 0 ){
 							if ($rows[0]['password'] == $password){

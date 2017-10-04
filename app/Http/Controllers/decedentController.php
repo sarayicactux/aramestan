@@ -65,16 +65,13 @@ class decedentController extends Controller
 		
 	}
 	public function decList() 	{
+			
 			$num = decedent::where('id', '>=', 1)->count();
 			$decedent = decedent::select('*')
                      ->limit(150)
 					 ->orderBy('id', 'DESC')
                      ->get();
-			/*$renderer = new \BaconQrCode\Renderer\Image\Png();
-$renderer->setHeight(256);
-$renderer->setWidth(256);
-$writer = new \BaconQrCode\Writer($renderer);
-$writer->writeFile('http://bama.ir', 'qrcode.png');	*/
+
 			 return view('decedent.decList', compact('decedent','num'));
 		
 	}
@@ -164,6 +161,7 @@ $writer->writeFile('http://bama.ir', 'qrcode.png');	*/
 		
 	}
 	public function delete(){
+	
 
 			 	$inf     =  decedent::find($_POST['tId']);
 				return view('decedent.decDel', compact('inf'));

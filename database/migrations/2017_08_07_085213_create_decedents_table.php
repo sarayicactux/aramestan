@@ -34,7 +34,8 @@ class CreateDecedentsTable extends Migration
 			$table->integer('d_date');
 			$table->integer('int_date');
 			$table->string('d_reason');
-			$table->integer('death_id')->default(0);
+            $table->integer('death_id')->unsigned();
+            $table->foreign('death_id')->references('id')->on('c_deaths');
 			$table->string('disease');
 			$table->string('hos_dc');
 			$table->string('sh_series');
@@ -45,7 +46,8 @@ class CreateDecedentsTable extends Migration
 			$table->integer('is_sh')->default(0);
 			$table->integer('burial')->default(0);
 			$table->string('burial_p');
-			$table->integer('user_id');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
 			$table->integer('regdate');
 			$table->string('hregdate');
 			$table->string('priest')->default('');
