@@ -9,6 +9,7 @@
 
                 <div class="panel-body">
                     You are logged in!
+                    sdfsdf
                 </div>
             </div>
         </div>
